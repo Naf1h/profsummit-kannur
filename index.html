@@ -97,8 +97,8 @@
 
   <!-- HEADER -->
   <header class="pt-6 pb-10">
-    <div class="flex items-center justify-between gap-4">
-      <span class="ml-auto border-2 border-lime text-lime text-[0.62rem] font-700 font-bold tracking-wider px-2.5 py-1.5 text-right leading-tight">SSF KANNUR CAMPUS SYNDICATE</span>
+    <div class="flex items-center gap-4">
+      <span class="border-2 border-lime text-lime text-[0.62rem] font-700 font-bold tracking-wider px-2.5 py-1.5 text-right leading-tight">SSF KANNUR CAMPUS SYNDICATE</span>
     </div>
 
     <h1 class="mt-10 leading-[0.95]">
@@ -116,9 +116,9 @@
     </p>
 
     <div class="slab slab-outline mt-8 inline-block px-5 py-4" style="--slab-shadow:#9A00AA">
-      <p class="text-sm font-light">We hope you had a meaningful journey to Kuttiyadi and back. Share your travel experience and summit takeaways with the Kannur District Campus Syndicate.</p>
+      <p class="text-sm font-light">We hope you had a meaningful journey to Kuttiady and back. Share your travel experience and summit takeaways with the Kannur District Campus Syndicate.</p>
       <p class="mt-3 text-sun font-bold text-lg leading-tight">23, 24, 25 October 2026</p>
-      <p class="text-sm font-semibold">Sirajul Huda Campus, Kuttiyadi</p>
+      <p class="text-sm font-semibold">Sirajul Huda Campus, Kuttiady</p>
     </div>
   </header>
 
@@ -321,12 +321,15 @@
   </section>
 
   <footer class="mt-16 pt-6 border-t border-line text-xs font-light text-mute leading-relaxed">
-        SSF Kannur District Campus Syndicate.
+    SSF Kannur District Campus Syndicate
   </footer>
 </main>
 
 <script>
 (function () {
+  // Paste your Apps Script Web app URL here (ends in /exec)
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzqY6ZvbTXcnZFR2ioh-F1RA5UxaavGnuHu3zg5WeTuPKY3L-sE14xPDWKOY79_OVYDmQ/exec';
+
   const form = document.getElementById('feedback');
   const btn = document.getElementById('submitBtn');
   const msg = document.getElementById('formMsg');
@@ -424,13 +427,24 @@
 
     try {
       const data = Object.fromEntries(new FormData(form).entries());
-      const res = await fetch('https://api.web3forms.com/submit', {
+
+      // 1. Google Sheet (Apps Script). no-cors: the reply can't be read, but the row is saved.
+      const sheetReq = SHEET_URL.startsWith('https://script.google.com/')
+        ? fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(data) })
+        : Promise.reject(new Error('Sheet URL not set'));
+
+      // 2. Email (Web3Forms)
+      const mailReq = fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(data)
+      }).then(async function (res) {
+        const json = await res.json().catch(function () { return {}; });
+        if (!res.ok || json.success === false) throw new Error(json.message || 'Request failed');
       });
-      const json = await res.json().catch(function () { return {}; });
-      if (!res.ok || json.success === false) throw new Error(json.message || 'Request failed');
+
+      const results = await Promise.allSettled([sheetReq, mailReq]);
+      if (results.every(function (r) { return r.status === 'rejected'; })) throw new Error('Both failed');
 
       form.classList.add('hidden');
       const thanks = document.getElementById('thanks');
