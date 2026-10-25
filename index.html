@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ProfSummit '26 Delegate Reflections | SSF Kannur Campus Syndicate</title>
+<meta name="description" content="Travel feedback and summit reflections from ProfSummit '26 delegates, collected by the SSF Kannur District Campus Syndicate.">
+<meta name="theme-color" content="#23221E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+  if (window.tailwind) tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#23221E', ink2: '#2D2C27', line: '#4A4842',
+          lime: '#92EF00', magenta: '#9A00AA', violet: '#7E3BED',
+          sun: '#E4FE05', paper: '#FEFFF5', mute: '#A9A69C'
+        },
+        fontFamily: { sora: ['Sora', 'system-ui', 'Segoe UI', 'Arial', 'sans-serif'] }
+      }
+    }
+  }
+</script>
+<style>
+  :root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  html { background: #23221E; }
+  body { font-family: 'Sora', system-ui, 'Segoe UI', Arial, sans-serif; background: #23221E; color: #FEFFF5; -webkit-font-smoothing: antialiased; }
+
+  /* Poster highlight box: white block, violet text (theme lockup) */
+  .hl { background: #fff; color: #7E3BED; padding: 0 .3em; -webkit-box-decoration-break: clone; box-decoration-break: clone; line-height: 1.5; }
+
+  /* Angular tilted card with offset shadow shape (poster date tags) */
+  .slab { position: relative; isolation: isolate; }
+  .slab::before, .slab::after { content: ""; position: absolute; inset: 0; z-index: -1; clip-path: polygon(1.5% 5%, 100% 0, 98% 100%, 0 94%); }
+  .slab::after { background: var(--slab-bg, #9A00AA); }
+  .slab::before { background: var(--slab-shadow, #92EF00); transform: translate(7px, 7px); }
+  .slab-outline::after { background: #23221E; box-shadow: inset 0 0 0 2px #FEFFF5; }
+
+  /* Fields */
+  .inp { width: 100%; background: #2D2C27; border: 2px solid #4A4842; color: #FEFFF5; padding: .8rem .9rem; font-size: 1rem; border-radius: 2px; transition: border-color .15s; }
+  .inp::placeholder { color: #7f7c73; }
+  .inp:focus { outline: none; border-color: #92EF00; }
+  textarea.inp { min-height: 7.5rem; resize: vertical; line-height: 1.55; }
+  select.inp { appearance: none; -webkit-appearance: none; padding-right: 2.6rem;
+    background-image: linear-gradient(45deg, transparent 50%, #92EF00 50%), linear-gradient(135deg, #92EF00 50%, transparent 50%);
+    background-position: calc(100% - 20px) 55%, calc(100% - 14px) 55%; background-size: 6px 6px; background-repeat: no-repeat; }
+  select.inp option { background: #2D2C27; color: #FEFFF5; }
+
+  .q { font-weight: 600; font-size: .98rem; line-height: 1.45; display: block; margin-bottom: .6rem; }
+  .q .opt { font-weight: 300; color: #A9A69C; font-size: .85rem; }
+  .q .req { color: #92EF00; }
+  .hint { font-weight: 300; color: #A9A69C; font-size: .82rem; }
+
+  /* 1-5 rating buttons (real radios, visually replaced) */
+  .rate { display: grid; grid-template-columns: repeat(5, 1fr); gap: .55rem; }
+  .rate input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .rate span { display: flex; align-items: center; justify-content: center; height: 3.3rem; border: 2px solid #4A4842; background: #2D2C27; font-weight: 700; font-size: 1.15rem; cursor: pointer; user-select: none; transition: transform .12s, background .12s, box-shadow .12s, border-color .12s; }
+  .rate span:hover { border-color: #92EF00; }
+  .rate input:checked + span { background: #92EF00; border-color: #92EF00; color: #23221E; box-shadow: 4px 4px 0 #9A00AA; transform: translate(-2px, -2px); }
+  .rate input:focus-visible + span { outline: 3px solid #E4FE05; outline-offset: 2px; }
+  .scale { display: flex; justify-content: space-between; margin-top: .5rem; font-size: .75rem; color: #A9A69C; font-weight: 300; }
+
+  /* Next-year choices */
+  .choice { display: flex; gap: .8rem; align-items: flex-start; padding: .85rem .9rem; border: 2px solid rgba(255,255,255,.35); cursor: pointer; transition: border-color .12s, background .12s; }
+  .choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .choice .box { flex: none; width: 1.25rem; height: 1.25rem; border: 2px solid #FEFFF5; margin-top: .1rem; display: grid; place-items: center; }
+  .choice .box::after { content: ""; width: .6rem; height: .6rem; background: #92EF00; transform: scale(0); transition: transform .12s; }
+  .choice:has(input:checked) { border-color: #92EF00; background: rgba(35,34,30,.35); }
+  .choice input:checked + .box { border-color: #92EF00; }
+  .choice input:checked + .box::after { transform: scale(1); }
+  .choice input:focus-visible + .box { outline: 3px solid #E4FE05; outline-offset: 2px; }
+
+  /* Errors */
+  .err { display: none; color: #E4FE05; font-size: .8rem; margin-top: .45rem; font-weight: 400; }
+  .field.invalid .err { display: block; }
+  .field.invalid .inp { border-color: #E4FE05; }
+  .field.invalid .rate span { border-color: #E4FE05; }
+
+  .btn { width: 100%; background: #92EF00; color: #23221E; font-weight: 800; font-size: 1.05rem; padding: 1.05rem; box-shadow: 6px 6px 0 #9A00AA; transition: transform .12s, box-shadow .12s, opacity .12s; }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 #9A00AA; }
+  .btn:active { transform: translate(3px, 3px); box-shadow: 2px 2px 0 #9A00AA; }
+  .btn:focus-visible { outline: 3px solid #E4FE05; outline-offset: 4px; }
+  .btn[disabled] { opacity: .7; cursor: wait; transform: none; }
+
+  .hidden { display: none !important; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+  .reveal { animation: rise .45s ease-out both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body class="min-h-screen">
+<main class="mx-auto max-w-xl px-5 pb-16">
+
+  <!-- HEADER -->
+  <header class="pt-6 pb-10">
+    <div class="flex items-center justify-between gap-4">
+      <img src="logo.png" alt="SSF & ProfSummit Official Logo" class="h-14 w-auto object-contain" onerror="this.style.display='none'">
+      <span class="ml-auto border-2 border-lime text-lime text-[0.62rem] font-700 font-bold tracking-wider px-2.5 py-1.5 text-right leading-tight">SSF KANNUR CAMPUS SYNDICATE</span>
+    </div>
+
+    <h1 class="mt-10 leading-[0.95]">
+      <span class="block text-lime font-extrabold text-[3.1rem] sm:text-6xl tracking-tight">ProfSummit '26</span>
+      <span class="block mt-3 text-paper font-semibold text-2xl sm:text-3xl">Delegate Reflections</span>
+    </h1>
+
+    <p class="mt-6 text-lg sm:text-xl font-light leading-relaxed">
+      <span class="hl">Be the <strong class="font-extrabold">Being</strong>,</span><br>
+      <span class="hl">Beyond the <strong class="font-extrabold">Comfortable</strong></span>
+    </p>
+
+    <p class="mt-7 text-[0.95rem] font-light leading-relaxed text-paper/90">
+      This short form is from the <strong class="font-semibold text-paper">SSF Kannur District Campus Syndicate</strong>. We would like to hear your reflections and learn how we can make our district and division travel arrangements better for you.
+    </p>
+
+    <div class="slab slab-outline mt-8 inline-block px-5 py-4" style="--slab-shadow:#9A00AA">
+      <p class="text-sm font-light">We hope you had a meaningful journey to Kuttiyadi and back. Share your travel experience and summit takeaways with the Kannur District Campus Syndicate.</p>
+      <p class="mt-3 text-sun font-bold text-lg leading-tight">23, 24, 25 October 2026</p>
+      <p class="text-sm font-semibold">Sirajul Huda Campus, Kuttiyadi</p>
+    </div>
+  </header>
+
+  <!-- FORM -->
+  <form id="feedback" novalidate class="space-y-14">
+    <input type="hidden" name="access_key" value="cb948c99-a43d-4010-9de7-289605e56c18">
+    <input type="hidden" name="subject" value="ProfSummit '26 Delegate Feedback - Kannur">
+    <input type="hidden" name="from_name" value="ProfSummit '26 Delegate Reflections">
+    <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off">
+
+    <!-- SECTION 01 -->
+    <section aria-labelledby="s1" class="space-y-6">
+      <div>
+        <p class="text-lime text-sm font-bold">Section 01</p>
+        <h2 id="s1" class="mt-2 text-xl font-bold"><span class="hl">Delegate details</span></h2>
+      </div>
+
+      <div class="field">
+        <label for="name" class="q">Full name <span class="req">*</span></label>
+        <input id="name" name="Full Name" type="text" class="inp" autocomplete="name" required>
+        <p class="err">Enter your full name.</p>
+      </div>
+
+      <div class="field">
+        <label for="phone" class="q">WhatsApp number <span class="req">*</span></label>
+        <input id="phone" name="WhatsApp Number" type="tel" class="inp" inputmode="numeric" maxlength="10" pattern="[0-9]{10}" placeholder="10-digit number" autocomplete="tel-national" required>
+        <p class="err">Enter a 10-digit WhatsApp number, without +91 or spaces.</p>
+      </div>
+
+      <div class="field">
+        <label for="campus" class="q">Campus / college name and place <span class="req">*</span></label>
+        <input id="campus" name="Campus / College" type="text" class="inp" placeholder="e.g. Government College of Engineering, Kannur" required>
+        <p class="err">Enter your campus name and place.</p>
+      </div>
+
+      <div class="field">
+        <label for="course" class="q">Course and year of study <span class="req">*</span></label>
+        <input id="course" name="Course & Year" type="text" class="inp" placeholder="e.g. BTech ECE, 2nd year" required>
+        <p class="err">Enter your course and year.</p>
+      </div>
+
+      <div class="field">
+        <label for="district" class="q">Your native district <span class="req">*</span></label>
+        <select id="district" name="Native District" class="inp" required>
+          <option selected>Kannur</option>
+          <option>Kasaragod</option>
+          <option>Wayanad</option>
+          <option>Kozhikode North</option>
+          <option>Kozhikode South</option>
+          <option>Malappuram West</option>
+          <option>Malappuram East</option>
+          <option>Palakkad</option>
+          <option>Nilgiris</option>
+          <option>Thrissur</option>
+          <option>Ernakulam</option>
+          <option>Idukki HR</option>
+          <option>Idukki LR</option>
+          <option>Kottayam</option>
+          <option>Alappuzha</option>
+          <option>Pathanamthitta</option>
+          <option>Kollam</option>
+          <option>Thiruvananthapuram</option>
+          <option>Outside Kerala / Other</option>
+        </select>
+        <p class="err">Select your district.</p>
+      </div>
+
+      <div class="field" id="divKannurWrap">
+        <label for="divKannur" class="q">Your native division in Kannur <span class="req">*</span></label>
+        <select id="divKannur" name="Native Division" class="inp" required>
+          <option value="" selected disabled>Select your division</option>
+          <option>Alakkode</option><option>Chakkarakal</option><option>Iritty</option><option>Kambil</option>
+          <option>Kannur</option><option>Koothuparamba</option><option>Madayi</option><option>Panoor</option>
+          <option>Payyannur</option><option>Peringathur</option><option>Sreekandapuram</option>
+          <option>Thalassery</option><option>Thaliparamba</option>
+        </select>
+        <p class="err">Select your division.</p>
+      </div>
+
+      <div class="field hidden" id="divOtherWrap">
+        <label for="divOther" class="q">Enter your native division <span class="req">*</span></label>
+        <input id="divOther" name="Native Division" type="text" class="inp" disabled>
+        <p class="err">Enter your division.</p>
+      </div>
+
+      <div class="field">
+        <label for="travelGroup" class="q">Which division's travel arrangement did you join for the trip? <span class="req">*</span></label>
+        <select id="travelGroup" name="Travel Arrangement Joined" class="inp" required>
+          <option value="" selected disabled>Select one</option>
+          <optgroup label="Kannur divisions">
+            <option>Alakkode</option><option>Chakkarakal</option><option>Iritty</option><option>Kambil</option>
+            <option>Kannur</option><option>Koothuparamba</option><option>Madayi</option><option>Panoor</option>
+            <option>Payyannur</option><option>Peringathur</option><option>Sreekandapuram</option>
+            <option>Thalassery</option><option>Thaliparamba</option>
+          </optgroup>
+          <optgroup label="Other arrangements">
+            <option>Travelled with another district</option>
+            <option>Own / independent travel</option>
+          </optgroup>
+        </select>
+        <p class="err">Select the travel arrangement you joined.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 02 -->
+    <section id="travelSection" aria-labelledby="s2" class="space-y-8">
+      <div>
+        <p class="text-lime text-sm font-bold">Section 02</p>
+        <h2 id="s2" class="mt-2 text-xl font-bold leading-snug"><span class="hl">Travel and district coordination</span></h2>
+        <p class="hint mt-3">Tap a number. 1 means it needs improvement, 5 means it was smooth and comfortable.</p>
+      </div>
+
+      <fieldset class="field" data-rate>
+        <legend class="q">Journey to the venue <span class="hint">(timing, boarding and travel comfort)</span> <span class="req">*</span></legend>
+        <div class="rate" data-name="Rating - Journey To Venue" data-required></div>
+        <div class="scale"><span>Needs improvement</span><span>Smooth & comfortable</span></div>
+        <p class="err">Choose a rating from 1 to 5.</p>
+      </fieldset>
+
+      <fieldset class="field" data-rate>
+        <legend class="q">Return journey from the venue <span class="hint">(departure timing and drop-off coordination)</span> <span class="req">*</span></legend>
+        <div class="rate" data-name="Rating - Return Journey" data-required></div>
+        <div class="scale"><span>Needs improvement</span><span>Smooth & comfortable</span></div>
+        <p class="err">Choose a rating from 1 to 5.</p>
+      </fieldset>
+
+      <fieldset class="field" data-rate>
+        <legend class="q">Division / district coordinators' support, updates and refreshments along the way <span class="req">*</span></legend>
+        <div class="rate" data-name="Rating - Coordinator Support" data-required></div>
+        <div class="scale"><span>Needs improvement</span><span>Smooth & comfortable</span></div>
+        <p class="err">Choose a rating from 1 to 5.</p>
+      </fieldset>
+
+      <div class="field">
+        <label for="travelNotes" class="q">Did you face any difficulties during the onward or return journey? How can our division / district syndicate arrange travel better next time? <span class="req">*</span></label>
+        <textarea id="travelNotes" name="Travel Difficulties & Suggestions" class="inp" placeholder="Share any delays, travel difficulties, or suggestions for our Kannur team..." required></textarea>
+        <p class="err">Write a few words, even if everything went well.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 03 -->
+    <section aria-labelledby="s3" class="space-y-8">
+      <div>
+        <p class="text-lime text-sm font-bold" data-secnum>Section 03</p>
+        <h2 id="s3" class="mt-2 text-xl font-bold"><span class="hl">Your ProfSummit '26 experience</span></h2>
+      </div>
+
+      <fieldset class="field" data-rate>
+        <legend class="q">How was your overall experience at ProfSummit '26? <span class="req">*</span></legend>
+        <div class="rate" data-name="Rating - Overall Summit Experience" data-required></div>
+        <div class="scale"><span>Good</span><span>Truly inspiring</span></div>
+        <p class="err">Choose a rating from 1 to 5.</p>
+      </fieldset>
+
+      <div class="field">
+        <label for="moment" class="q">Which session, talk, or moment from the summit stayed with you the most? <span class="req">*</span></label>
+        <textarea id="moment" name="Most Memorable Moment" class="inp" placeholder="Share your favorite takeaway or experience..." required></textarea>
+        <p class="err">Share one session or moment.</p>
+      </div>
+
+      <div class="field">
+        <label for="ideas" class="q">Any thoughts or ideas for upcoming campus gatherings in Kannur District? <span class="opt">(optional)</span></label>
+        <textarea id="ideas" name="Ideas for Kannur Campus Gatherings" class="inp"></textarea>
+      </div>
+    </section>
+
+    <!-- SECTION 04 -->
+    <section aria-labelledby="s4" class="space-y-6">
+      <p class="text-lime text-sm font-bold" data-secnum>Section 04</p>
+
+      <fieldset class="field slab px-5 pt-7 pb-6 sm:px-7">
+        <legend id="s4" class="sr-only">Can we see you at ProfSummit next year too?</legend>
+        <p aria-hidden="true" class="text-2xl font-extrabold leading-tight">Can we see you at ProfSummit next year too?</p>
+        <p class="mt-2 text-sun font-semibold">Be the Being, Beyond the Comfortable.</p>
+        <div class="mt-6 space-y-3">
+          <label class="choice"><input type="radio" name="See You Next Year" value="Insha Allah, definitely!" required><span class="box"></span><span class="text-[0.95rem]">Insha Allah, definitely!</span></label>
+          <label class="choice"><input type="radio" name="See You Next Year" value="Insha Allah — and I'd love to travel with the Kannur team again!"><span class="box"></span><span class="text-[0.95rem]">Insha Allah — and I'd love to travel with the Kannur team again!</span></label>
+          <label class="choice"><input type="radio" name="See You Next Year" value="Graduating soon, but will stay in touch!"><span class="box"></span><span class="text-[0.95rem]">Graduating soon, but will stay in touch!</span></label>
+          <label class="choice"><input type="radio" name="See You Next Year" value="Not sure yet"><span class="box"></span><span class="text-[0.95rem]">Not sure yet</span></label>
+          <label class="choice"><input type="radio" name="See You Next Year" value="Probably not next year"><span class="box"></span><span class="text-[0.95rem]">Probably not next year</span></label>
+        </div>
+        <p class="err">Choose one option.</p>
+      </fieldset>
+
+      <div class="pt-4">
+        <button id="submitBtn" type="submit" class="btn">Send feedback</button>
+        <p id="formMsg" class="mt-4 text-sm text-sun hidden" role="alert"></p>
+      </div>
+    </section>
+  </form>
+
+  <!-- THANK YOU -->
+  <section id="thanks" class="hidden pt-4" aria-live="polite" tabindex="-1">
+    <div class="slab reveal px-6 py-9 sm:px-8">
+      <p class="text-3xl font-extrabold leading-tight">Jazakallah Khair!</p>
+      <p class="mt-4 text-[1.02rem] font-light leading-relaxed">Thank you for traveling with us and sharing your feedback.</p>
+      <p class="mt-6 text-sun font-semibold">— SSF Kannur Campus Syndicate</p>
+    </div>
+    <p class="mt-10 text-lg font-light"><span class="hl">Be the <strong class="font-extrabold">Being</strong>, Beyond the <strong class="font-extrabold">Comfortable</strong></span></p>
+  </section>
+
+  <footer class="mt-16 pt-6 border-t border-line text-xs font-light text-mute leading-relaxed">
+    SSF Kannur District Campus Syndicate<br>ProfSummit '26 is hosted by SSF Kerala State Campus Syndicate.
+  </footer>
+</main>
+
+<script>
+(function () {
+  const form = document.getElementById('feedback');
+  const btn = document.getElementById('submitBtn');
+  const msg = document.getElementById('formMsg');
+
+  // Build 1-5 rating radios
+  document.querySelectorAll('.rate').forEach(function (group) {
+    const name = group.dataset.name;
+    for (let i = 1; i <= 5; i++) {
+      const label = document.createElement('label');
+      const input = document.createElement('input');
+      input.type = 'radio'; input.name = name; input.value = String(i);
+      if (i === 1 && group.hasAttribute('data-required')) input.required = true;
+      input.setAttribute('aria-label', i + ' out of 5');
+      const span = document.createElement('span'); span.textContent = i;
+      label.append(input, span); group.appendChild(label);
+    }
+  });
+
+  // Native division toggle
+  const district = document.getElementById('district');
+  const kWrap = document.getElementById('divKannurWrap'), kSel = document.getElementById('divKannur');
+  const oWrap = document.getElementById('divOtherWrap'), oInp = document.getElementById('divOther');
+  function syncDivision() {
+    const isKannur = district.value === 'Kannur';
+    kWrap.classList.toggle('hidden', !isKannur);
+    kSel.required = isKannur; kSel.disabled = !isKannur;
+    oWrap.classList.toggle('hidden', isKannur);
+    oInp.required = !isKannur; oInp.disabled = isKannur;
+    kWrap.classList.remove('invalid'); oWrap.classList.remove('invalid');
+  }
+  district.addEventListener('change', syncDivision);
+  syncDivision();
+
+  // Skip travel feedback for delegates who did not travel with a Kannur division
+  const travelGroup = document.getElementById('travelGroup');
+  const travelSection = document.getElementById('travelSection');
+  const noKannurTravel = ['Travelled with another district', 'Own / independent travel'];
+  function syncTravel() {
+    const skip = noKannurTravel.includes(travelGroup.value);
+    travelSection.classList.toggle('hidden', skip);
+    travelSection.querySelectorAll('input, textarea').forEach(function (el) { el.disabled = skip; });
+    travelSection.querySelectorAll('.field').forEach(function (f) { f.classList.remove('invalid'); });
+    const nums = document.querySelectorAll('[data-secnum]');
+    nums[0].textContent = skip ? 'Section 02' : 'Section 03';
+    nums[1].textContent = skip ? 'Section 03' : 'Section 04';
+  }
+  travelGroup.addEventListener('change', syncTravel);
+  syncTravel();
+
+  // Digits only for WhatsApp number
+  const phone = document.getElementById('phone');
+  phone.addEventListener('input', function () {
+    let d = phone.value.replace(/\D/g, '');
+    if (d.length > 10 && d.startsWith('91')) d = d.slice(2);
+    phone.value = d.slice(0, 10);
+  });
+
+  // Clear an error as soon as the field is fixed
+  form.addEventListener('input', clearFor);
+  form.addEventListener('change', clearFor);
+  function clearFor(e) {
+    const f = e.target.closest('.field');
+    if (f && f.classList.contains('invalid') && e.target.checkValidity()) f.classList.remove('invalid');
+  }
+
+  function validate() {
+    let first = null;
+    form.querySelectorAll('.field').forEach(function (f) { f.classList.remove('invalid'); });
+    form.querySelectorAll('input, select, textarea').forEach(function (el) {
+      if (el.disabled || el.type === 'hidden' || el.name === 'botcheck') return;
+      if (el.type === 'text' || el.tagName === 'TEXTAREA') el.value = el.value.trim();
+      if (!el.checkValidity()) {
+        const f = el.closest('.field');
+        if (f) { f.classList.add('invalid'); if (!first) first = f; }
+      }
+    });
+    if (first) {
+      first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const target = first.querySelector('input:not([type=hidden]), select, textarea');
+      if (target) setTimeout(function () { target.focus({ preventScroll: true }); }, 350);
+    }
+    return !first;
+  }
+
+  let sending = false;
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (sending) return;
+    msg.classList.add('hidden');
+    if (!validate()) return;
+
+    sending = true;
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    try {
+      const data = Object.fromEntries(new FormData(form).entries());
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json().catch(function () { return {}; });
+      if (!res.ok || json.success === false) throw new Error(json.message || 'Request failed');
+
+      form.classList.add('hidden');
+      const thanks = document.getElementById('thanks');
+      thanks.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      thanks.focus({ preventScroll: true });
+    } catch (err) {
+      msg.textContent = 'Your feedback was not sent. Check your internet connection and tap "Send feedback" again.';
+      msg.classList.remove('hidden');
+      btn.disabled = false;
+      btn.textContent = 'Send feedback';
+      sending = false;
+    }
+  });
+})();
+</script>
+</body>
+</html>
